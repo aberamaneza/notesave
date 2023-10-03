@@ -105,8 +105,10 @@ def show():
 
 	
 def delet():
-	
-	cur.execute("DELETE FROM `user` WHERE `name` IN (%s, %s)", (sel1, sel2))
+    global sel1, sel2
+    calling()  # تأكيد أن لدينا الاتصال بقاعدة البيانات
+    cur.execute("DELETE FROM `user` WHERE `name` = ? AND `data` = ?", (sel1, sel2))
+    con.commit()
 
 
 def clearing():
